@@ -28,7 +28,7 @@ function App() {
         <table className="">
           <thead className="">
             <tr>
-              <th className="">Name</th>
+              
               <th className="">hotdishmeat</th>
               <th className="">hotdishveg</th>
               <th className="">chili</th>
