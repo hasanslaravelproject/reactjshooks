@@ -34,8 +34,8 @@ function App() {
               <th className="">chili</th>
               <th className="">rye</th>
               <th className="">extrarye</th>
-              <th className="">rextrafocaccia</th>
               <th className="">focaccia</th>
+              <th className="">rextrafocaccia</th>
             </tr>
           </thead>
           <tbody>
@@ -69,6 +69,7 @@ function App() {
                         {item.extrarye / 10 < 5 ? "half" : "full"}
                         {item.focaccia / 10 < 5 ? "half" : "full"}
                         {item.extrafocaccia / 10 < 5 ? "half" : "full"}
+                        <td>{item.hotdishmeat / 10}</td>
 
                         <td>{item.hotdishveg / 10}</td>
                         <td>{item.chili / 10}</td>
