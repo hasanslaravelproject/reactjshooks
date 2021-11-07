@@ -5,16 +5,16 @@ import axios from "axios";
 function App() {
   const [loading, setLoading] = useState(false);
   const [client, setClientInfo] = useState([]);
-  const [food, setFoodInfo] = useState([]);
+  const [report, setReportInfo] = useState([]);
   const loadPost = async () => {
     setLoading(true);
-    Api.makeGetRequest("clients", "all-food", "users").then(
+    Api.makeGetRequest("clients", "reports").then(
       axios.spread((...allData) => {
         const clientData = allData[0].data.data;
-        const foodData = allData[1].data.data;
+        const reportData = allData[1].data.data;
 
         setClientInfo(clientData);
-        setFoodInfo(foodData);
+        setReportInfo(reportData);
       })
     );
     setLoading(false);
@@ -29,33 +29,59 @@ function App() {
           <thead className="">
             <tr>
               <th className="">Name</th>
-              {food.map((item) => {
-                return (
-                  <th className="" style={{ width: "200px" }}>
-                    <ul style={{ display: "inline", listStyleType: "none" }}>
-                      <li style={{}}>{item.name}</li>
-                    </ul>
-                  </th>
-                );
-              })}
+              <th className="">hotdishmeat</th>
+              <th className="">hotdishveg</th>
+              <th className="">chili</th>
+              <th className="">rye</th>
+              <th className="">extrarye</th>
+              <th className="">rextrafocaccia</th>
+              <th className="">focaccia</th>
             </tr>
           </thead>
           <tbody>
-            {client.map((details) => {
-              return (
+            <tr>
+              <>
+                {client.map((details) => {
+                  return (
+                    <tr>
+                      <td>
+                        <ul style={{ display: "block", listStyleType: "none" }}>
+                          <li>{details.name}</li>
+                        </ul>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </>
+              <td>
                 <tr>
-                  <td>
-                    <ul style={{ display: "block", listStyleType: "none" }}>
-                      <li>{details.name}</li>
-                    </ul>
-                  </td>
-                </tr>
-              );
-            })}
+                  {report.map((item) => {
+                    return (
+                      <tr key={item.id}>
+                        <tr>
+                          <td>{item.hotdishmeat / 10}</td>
+                        </tr>
 
-            <td>0.3%</td>
-            <td>1.3%</td>
-            <td>5.3%</td>
+                        {item.hotdishmeat / 10 < 5 ? "half" : "full"}
+                        {item.hotdishveg / 10 < 5 ? "half" : "full"}
+                        {item.chili / 10 < 5 ? "half" : "full"}
+                        {item.rye / 10 < 5 ? "half" : "full"}
+                        {item.extrarye / 10 < 5 ? "half" : "full"}
+                        {item.focaccia / 10 < 5 ? "half" : "full"}
+                        {item.extrafocaccia / 10 < 5 ? "half" : "full"}
+
+                        <td>{item.hotdishveg / 10}</td>
+                        <td>{item.chili / 10}</td>
+                        <td>{item.rye / 10}</td>
+                        <td>{item.extrarye / 10}</td>
+                        <td>{item.focaccia / 10}</td>
+                        <td>{item.extrafocaccia / 10}</td>
+                      </tr>
+                    );
+                  })}
+                </tr>
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>
